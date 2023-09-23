@@ -8,11 +8,17 @@
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{{ asset('css/plugins/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
-    <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
+    {{-- AdminLTE --}}
+    <link rel="stylesheet" href="{{ asset('/css/plugins/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/adminlte.min.css') }}">
+
+    {{-- Bootstrap 5 --}}
+    <link rel="stylesheet" href="{{ asset('/css/plugins/css/bootstrap.min.css') }}">
+
+    {{-- Datatables --}}
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}">
+
 
 </head>
 
@@ -29,15 +35,25 @@
 
         @include('layouts.partials.footer')
     </div>
-
-    <script src="{{ asset('js/plugins/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/bootstrap.bundle.js') }}"></script>
-    <script src="{{ asset('js/adminlte.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-
+    
     <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
     </form>
+    
+    {{-- JQuery --}}
+    <script src="{{ asset('js/plugins/jquery.min.js') }}"></script>
+
+    {{-- Bootstrap5 --}}
+    <script src="{{ asset('js/plugins/bootstrap.bundle.js') }}"></script>
+
+    {{-- AdminLte --}}
+    <script src="{{ asset('js/adminlte.min.js') }}"></script>
+
+    {{-- Datatables --}}
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap5.js') }}"></script>
+
+
 
     @yield('scripts')
 </body>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -22,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -30,7 +32,10 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+
+        User::create($request->validated());
+
+        return redirect()->route('admin.users.index')->with('success', '¡Usuario creado exitosamente!');
     }
 
     /**
@@ -46,7 +51,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -54,7 +59,15 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+
+        if (is_null($data['password'])) {
+            unset($data['password']);
+        }
+
+        $user->update($data);
+
+        return redirect()->route('admin.users.index')->with('success', '¡Usuario editado exitosamente!');
     }
 
     /**
@@ -62,6 +75,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return back()->with('eliminated', '¡Usuario eliminado!');
     }
 }

@@ -19,9 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
-Route::group(['middleware' => ['auth', 'verified'], 'as' => 'admin.'], function () {
+Route::group(['middleware' => ['auth'], 'as' => 'admin.'], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/users', UserController::class);
