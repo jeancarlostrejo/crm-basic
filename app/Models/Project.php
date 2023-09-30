@@ -12,6 +12,8 @@ class Project extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const STATUS = ['Abierto', 'En progreso', 'Cancelado', 'Completado'];
+
     protected $fillable = [
         'name',
         'description',

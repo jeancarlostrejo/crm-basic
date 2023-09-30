@@ -19,6 +19,12 @@
     {{-- Datatables --}}
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}">
 
+    {{-- Flatpckr --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    {{-- Select2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
 </head>
 
@@ -35,11 +41,11 @@
 
         @include('layouts.partials.footer')
     </div>
-    
+
     <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
     </form>
-    
+
     {{-- JQuery --}}
     <script src="{{ asset('js/plugins/jquery.min.js') }}"></script>
 
@@ -53,8 +59,21 @@
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap5.js') }}"></script>
 
+    {{-- flatpickr --}}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
+    {{-- Select2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            flatpickr(".date", {
+                "locale": "es"
+            });
+            $('.select2').select2();
+        })
+    </script>
     @yield('scripts')
 </body>
 
