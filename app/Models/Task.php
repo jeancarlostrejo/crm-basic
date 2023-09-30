@@ -11,6 +11,8 @@ class Task extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const STATUS = ['Abierto', 'En progreso', 'Cancelado', 'Completado'];
+
     protected $fillable = [
         'name',
         'description',
@@ -30,7 +32,7 @@ class Task extends Model
     {
         return $this->belongsTo(Client::class)->withDefault();
     }
-    
+
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class)->withDefault();

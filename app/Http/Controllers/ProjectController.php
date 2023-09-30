@@ -78,6 +78,6 @@ class ProjectController extends Controller
     {
         $project->delete();
 
-        return back();
+        return back()->with('eliminated', '¡Proyecto eliminado!');
     }
 }

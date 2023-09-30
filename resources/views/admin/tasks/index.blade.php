@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Listado de Projectos</h1>
+                    <h1 class="m-0">Listado de Tareas</h1>
                 </div>
             </div>
         </div>
@@ -29,33 +29,35 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('admin.projects.create') }}" class="btn btn-primary mb-3">Nuevo Projecto</a>
-                            <table class="table table-bordered" id="project_table">
+                            <a href="{{ route('admin.tasks.create') }}" class="btn btn-primary mb-3">Nueva Tarea</a>
+                            <table class="table table-bordered" id="task_table">
                                 <thead>
                                     <tr>
-                                        <th>Proyecto</th>
+                                        <th>Tarea</th>
                                         <th>Descripción</th>
                                         <th>Fecha límite</th>
                                         <th>Estado</th>
+                                        <th>Proyecto</th>
                                         <th>Usuario</th>
                                         <th>Cliente</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($projects as $project)
+                                    @foreach ($tasks as $task)
                                         <tr>
-                                            <td>{{ $project->name }}</td>
-                                            <td>{{ $project->description }}</td>
-                                            <td>{{ $project->deadline }}</td>
-                                            <td>{{ $project->status }}</td>
-                                            <td>{{ $project->user->name }}</td>
-                                            <td>{{ $project->client->contact_name }}</td>
+                                            <td>{{ $task->name }}</td>
+                                            <td>{{ $task->description }}</td>
+                                            <td>{{ $task->deadline }}</td>
+                                            <td>{{ $task->status }}</td>
+                                            <td>{{ $task->project->name }}</td>
+                                            <td>{{ $task->user->name }}</td>
+                                            <td>{{ $task->client->contact_name }}</td>
                                             <td>
-                                                <a href="{{ route('admin.projects.edit', $project->id) }}"
+                                                <a href="{{ route('admin.tasks.edit', $task->id) }}"
                                                     class="btn btn-success"> Editar</a>
 
-                                                <form action="{{ route('admin.projects.destroy', $project->id) }}"
+                                                <form action="{{ route('admin.tasks.destroy', $task->id) }}"
                                                     id="delete_form" method="POST"
                                                     onsubmit="return confirm('Esta seguro que desea eliminar el registro?')"
                                                     style="display: inline-block;">
@@ -78,6 +80,6 @@
 @endsection
 @section('scripts')
     <script>
-        new DataTable('#project_table');
+        new DataTable('#task_table');
     </script>
 @endsection
